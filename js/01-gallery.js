@@ -26,15 +26,13 @@ import { galleryItems } from './gallery-items.js';
 
 const paletteContainer = document.querySelector('.gallery');
 const cardsMarkUp = createGalleryMarkup(galleryItems);
-let modalWindow;
+let instance;
 let onCliskClose;
 
 paletteContainer.insertAdjacentHTML('beforeend', cardsMarkUp);
-
-console.log(createGalleryMarkup(galleryItems));
+// console.log(createGalleryMarkup(galleryItems));
 
 paletteContainer.addEventListener('click', onPaletteContainerClick );
-
 
  function createGalleryMarkup(galleryItems) {
     return galleryItems
@@ -55,30 +53,22 @@ paletteContainer.addEventListener('click', onPaletteContainerClick );
       .join('');
      
   }
-
 function onPaletteContainerClick(evt) {
     evt.preventDefault();
 
     if (!evt.target.classList.contains('gallery__image')) {
         return;
     }
-    modalWindow = basicLightbox.create(
+    instance = basicLightbox.create(
         ` <img src="${evt.target.dataset.source}"/>`
     );
-    modalWindow.show(onCliskClose);
-    window.addEventListener('keydown', onEscapeClose);
+    instance.show(onCliskClose);
+  // console.log(modalWindow.show(onCliskClose));
+  window.addEventListener('keydown', onEscapeClose);
 }
-
 function onEscapeClose(event) {
-    modalWindow.close();
-  }
-
-
-
-
-
-// const instance = basicLightbox.create(`
-//     <img src="${event.target.dataset.source}" width="800" height="600">
-// `);
-
-// instance.show()
+  // console.log(event.code);
+  if (event.code === "Escape") {
+    instance.close();
+  };
+};
