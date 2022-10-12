@@ -34,7 +34,7 @@ paletteContainer.insertAdjacentHTML('beforeend', cardsMarkUp);
 
 paletteContainer.addEventListener('click', onPaletteContainerClick );
 
- function createGalleryMarkup(galleryItems) {
+function createGalleryMarkup(galleryItems) {
     return galleryItems
       .map(({ preview, original, description }) => {
         return `
@@ -52,7 +52,7 @@ paletteContainer.addEventListener('click', onPaletteContainerClick );
       })
       .join('');
      
-  }
+}
 function onPaletteContainerClick(evt) {
     evt.preventDefault();
 
